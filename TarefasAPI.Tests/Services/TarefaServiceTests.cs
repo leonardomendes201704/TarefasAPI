@@ -1,21 +1,23 @@
 ﻿using Moq;
-using TarefasAPI.Models;
-using TarefasAPI.Repositories;
-using TarefasAPI.Services;
 using Xunit;
-using System.Collections.Generic;
+using TarefasAPI.Services;
+using TarefasAPI.Repositories;
+using TarefasAPI.Models;
+using Microsoft.Extensions.Logging;
 
 namespace TarefasAPI.Tests.Services
 {
     public class TarefaServiceTests
     {
         private readonly Mock<ITarefaRepository> _repoMock;
+        private readonly Mock<ILogger<TarefaService>> _loggerMock;
         private readonly TarefaService _service;
 
         public TarefaServiceTests()
         {
             _repoMock = new Mock<ITarefaRepository>();
-            _service = new TarefaService(_repoMock.Object);
+            _loggerMock = new Mock<ILogger<TarefaService>>();
+            _service = new TarefaService(_repoMock.Object, _loggerMock.Object);
         }
 
         [Fact]
