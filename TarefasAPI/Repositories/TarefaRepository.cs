@@ -1,4 +1,5 @@
-﻿using TarefasAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using TarefasAPI.Data;
 using TarefasAPI.Models;
 using TarefasAPI.Repositories;
 
@@ -29,6 +30,12 @@ public class TarefaRepository : ITarefaRepository
 
     public void Update(Tarefa tarefa)
     {
+        var local = _context.Tarefas.Local.FirstOrDefault(t => t.Id == tarefa.Id);
+        if (local != null)
+        {
+            _context.Entry(local).State = EntityState.Detached;
+        }
+
         _context.Tarefas.Update(tarefa);
         _context.SaveChanges();
     }
