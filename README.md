@@ -34,7 +34,7 @@ TarefasAPI.Tests/
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seuusuario/TarefasAPI.git
+git clone https://github.com/leonardomendes201704/TarefasAPI.git
 ```
 
 2. Acesse a pasta:
